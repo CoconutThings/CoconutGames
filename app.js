@@ -99,28 +99,6 @@ window.onload = () => {
   startGame();
 };
 
-// ===== SIMPLE GAME =====
-
-function startGame() {
-  let canvas = document.getElementById("gameCanvas");
-  if (!canvas) return;
-
-  let ctx = canvas.getContext("2d");
-
-  let x = 50;
-
-  function loop() {
-    ctx.clearRect(0, 0, 500, 300);
-    ctx.fillStyle = "lime";
-    ctx.fillRect(x, 150, 30, 30);
-
-    x += 1;
-    requestAnimationFrame(loop);
-  }
-
-  loop();
-}
-
 // ===== VIDEO PLAYER =====
 
 function loadVideo() {
