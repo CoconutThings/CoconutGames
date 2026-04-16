@@ -133,3 +133,48 @@ function earnCoins() {
   localStorage.setItem("coins", coins);
   updateCoinsDisplay();
 }
+
+let grid = [];
+let size = 10;
+
+function initBuilder() {
+  let canvas = document.getElementById("builderCanvas");
+  if (!canvas) return;
+
+  let ctx = canvas.getContext("2d");
+
+  for (let y = 0; y < size; y++) {
+    grid[y] = [];
+    for (let x = 0; x < size; x++) {
+      grid[y][x] = 0;
+    }
+  }
+
+  canvas.addEventListener("click", (e) => {
+    let rect = canvas.getBoundingClientRect();
+    let x = Math.floor((e.clientX - rect.left) / 30);
+    let y = Math.floor((e.clientY - rect.top) / 30);
+
+    grid[y][x] = 1;
+    draw();
+  });
+
+  function draw() {
+    ctx.clearRect(0, 0, 300, 300);
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        ctx.strokeRect(x * 30, y * 30, 30, 30);
+        if (grid[y][x]) {
+          ctx.fillRect(x * 30, y * 30, 30, 30);
+        }
+      }
+    }
+  }
+
+  draw();
+}
+
+function saveMap() {
+  localStorage.setItem("myGame", JSON.stringify(grid));
+  alert("Game saved!");
+}
