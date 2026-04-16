@@ -178,3 +178,23 @@ function saveMap() {
   localStorage.setItem("myGame", JSON.stringify(grid));
   alert("Game saved!");
 }
+
+function saveCharacter() {
+  let data = localStorage.getItem("avatar3D");
+  let chars = JSON.parse(localStorage.getItem("characters") || "[]");
+
+  chars.push(data);
+  localStorage.setItem("characters", JSON.stringify(chars));
+
+  alert("Character saved!");
+}
+
+function loadCharacter() {
+  let chars = JSON.parse(localStorage.getItem("characters") || "[]");
+  if (chars.length === 0) return alert("No characters!");
+
+  let char = JSON.parse(chars[0]);
+
+  avatarParts.body.material.color.set(char.bodyColor);
+  avatarParts.head.material.color.set(char.headColor);
+}
