@@ -119,3 +119,17 @@ window.addEventListener("storage", (event) => {
 function movePlayer(pos) {
   localStorage.setItem("playerPos", pos);
 }
+
+function getCoins() {
+  return parseInt(localStorage.getItem("coins") || "0");
+}
+
+function updateCoinsDisplay() {
+  document.getElementById("coins").innerText = getCoins() + " CO$";
+}
+
+function earnCoins() {
+  let coins = getCoins() + 10;
+  localStorage.setItem("coins", coins);
+  updateCoinsDisplay();
+}
