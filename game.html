@@ -16,12 +16,15 @@
 
   <!-- Character Customization -->
   <div class="panel">
-    <h2>Character</h2>
-    <div id="avatar"></div>
+  <h2>3D Avatar</h2>
+  <div id="avatar3d"></div>
 
-    <label>Color:</label>
-    <input type="color" id="colorPicker" onchange="updateAvatar()">
-  </div>
+  <label>Body Color:</label>
+  <input type="color" id="bodyColor" onchange="update3DAvatar()">
+
+  <label>Head Color:</label>
+  <input type="color" id="headColor" onchange="update3DAvatar()">
+</div>
 
   <!-- Game Window -->
   <div class="game-window">
