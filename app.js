@@ -1,3 +1,55 @@
+let scene, camera, renderer, avatarParts = {};
+
+function init3DAvatar() {
+  let container = document.getElementById("avatar3d");
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(200, 200);
+
+  container.appendChild(renderer.domElement);
+
+  // Body
+  let body = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1.5, 0.5),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+  );
+
+  // Head
+  let head = new THREE.Mesh(
+    new THREE.BoxGeometry(0.8, 0.8, 0.8),
+    new THREE.MeshBasicMaterial({ color: 0xffcc99 })
+  );
+
+  head.position.y = 1.3;
+
+  scene.add(body);
+  scene.add(head);
+
+  avatarParts.body = body;
+  avatarParts.head = head;
+
+  camera.position.z = 3;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    body.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+
+  animate();
+}
+
+function update3DAvatar() {
+  let bodyColor = document.getElementById("bodyColor").value;
+  let headColor = document.getElementById("headColor").value;
+
+  avatarParts.body.material.color.set(bodyColor);
+  avatarParts.head.material.color.set(headColor);
+
+  localStorage.setItem("avatar3D", JSON.stringify({ bodyColor, headColor }));
+}
 // ===== AUTH SYSTEM =====
 
 function signup() {
